@@ -4,9 +4,13 @@ body {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-#promptForm {
-    padding-top:100px;
-    background-color: #F1F8F8;
+form {
+    display: flex;
+    width:80%;
+}
+
+#prompt-form {
+    padding-top:200px;
     min-height: 400px;
 }
 
