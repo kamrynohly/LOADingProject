@@ -8,6 +8,7 @@ If you are using a Mac, try running
 ```
 pip install openai
 pip install flask
+pip install Flask-Session
 ```
 
 Once these have been successfully installed, you must also generate an OpenAI API key. Do not share this with anyone! You can create your API key by visiting this website about [OpenAI's API](https://openai.com/blog/openai-api).
@@ -22,4 +23,4 @@ When you have accomplished the above steps, you can run the project by opening u
 flask run
 ```
 
-You should see a link created within your terminal, which gives you access to our project site.
+You should see a link created within your terminal, which gives you access to our project site. The site includes both our baseline AI tool, as well as our experimental tool. The experimental tool leverages two key design differences in its prompt-engineering, focusing on transferability of knowledge and building resiliency.

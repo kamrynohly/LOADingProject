@@ -1,27 +1,70 @@
+/* Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* All */
 body {
-    text-align: center;
-    /* I chose a random font, pls change */
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family: "Poppins", sans-serif!important;
 }
 
+
+
+/* Prompt Inputs & Forms */
 form {
     display: flex;
-    width:80%;
+    width:100%;
 }
 
-#prompt-form {
-    padding-top:200px;
-    min-height: 400px;
+#prompt {
+    margin-left:10%;
+    width: 70%;
+    min-height: 50px!important;
 }
 
-#responseSection {
-    padding-top:100px;
-    background-color: #162521;
+#secondary-prompt-form {
+    display: inline;
+}
+
+.longer-input {
+    height: 150px;
+    vertical-align: top;
+}
+
+
+
+/* Buttons */
+.btn-go {
+    margin-left: 10px;
+    background-color: #0FB900!important;
+}
+
+.btn-back {
+    height: 50px;
+    margin-left: 0%;
+}
+
+.btn-next {
+    float: right!important;
+    width: 50px;
+    height: 50px;
+}
+
+
+
+/* Padding */
+.top-padding {
+    height: 250px;
+}
+
+
+
+/* Icons */
+.go-icon {
     color: white;
-    min-height: 400px;
+    font-size: 24px!important;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
-#prompt-input {
-    min-width: 50%;
-    min-height: 50%;
+.next-icon {
+    font-size: 24px!important;
 }
