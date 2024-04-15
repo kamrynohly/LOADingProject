@@ -6,9 +6,9 @@ First, you must download the necessary dependencies for the project. Once you ha
 
 If you are using a Mac, try running
 ```
-pip install openai
-pip install flask
-pip install Flask-Session
+pip3 install openai
+pip3 install flask
+pip3 install Flask-Session
 ```
 
 Once these have been successfully installed, you must also generate an OpenAI API key. Do not share this with anyone! You can create your API key by visiting this website about [OpenAI's API](https://openai.com/blog/openai-api).

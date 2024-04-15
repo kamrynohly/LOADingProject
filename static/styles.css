@@ -7,6 +7,16 @@ body {
 }
 
 
+/* Experimental vs. Baseline Differences */
+.highlighter-experimental {
+    background: pink!important;
+    padding: 5px;
+}
+
+.highlighter-baseline {
+    background: lightgray!important;
+    padding: 5px;
+}
 
 /* Prompt Inputs & Forms */
 form {
@@ -52,7 +62,7 @@ form {
 
 /* Padding */
 .top-padding {
-    height: 250px;
+    height: 230px;
 }
 
 

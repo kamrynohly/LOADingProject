@@ -1,5 +1,3 @@
 __pycache__
 .env
 flask_session
-conversations.db
-data_training_sets

@@ -95,8 +95,8 @@ def baseline_response():
     conversation.append({"role": "user", "content": prompt})         # Add prompt to the conversation
     output = baselineAskAI(conversation)                             # Generate a response with baseline AI
     conversation.append({"role": "assistant", "content" : output})   # Add the response to the conversation
-   
-   # Update the conversation information.
+
+    # Update the conversation information.
     session["base-conversations"] = conversation
     return render_template("baseline-response.html", promptResponse=output)
     
