@@ -1,10 +1,13 @@
 {
+    "version": 2,
     "builds": [
         {
             "src": "app.py",
             "use": "@vercel/python",
-            "functions": {
-                "*.py": { "maxDuration": 60 }
+            "config": {
+                "functions": {
+                    "*.py": { "maxDuration": 60 }
+                }
             }
         }
     ],
