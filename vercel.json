@@ -3,7 +3,14 @@
     "builds": [
         {
             "src": "app.py",
-            "use": "@vercel/python"
+            "use": "@vercel/python",
+            "config": {
+                "functions": {
+                    "path/to/dir/**/*": {
+                      "maxDuration": 50 
+                    }
+                }
+            }
         }
     ],
     "routes": [
@@ -11,10 +18,5 @@
             "src": "/(.*)",
             "dest": "app.py"
         }
-    ],
-    "functions": {
-        "path/to/dir/**/*": {
-          "maxDuration": 50 
-        }
-    }
+    ]
 }
