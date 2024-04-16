@@ -1,5 +1,4 @@
-from flask import Flask, redirect, render_template, request, session, flash
-from flask_session import Session
+from flask import Flask, redirect, render_template, request
 from baseline_helpers import baselineAskAI
 from experimental_helpers import experimentalAskAI
 
@@ -9,11 +8,6 @@ app = Flask(__name__)
 
 # Auto reload when changes are made.
 app.config["TEMPLATES_AUTO_RELOAD"] = True
-
-# Configure session
-app.config["SESSION_PERMANENT"] = False
-app.config["SESSION_TYPE"] = "filesystem"
-Session(app)
 
 # Make sure the session isn't stored in our cache
 @app.after_request
@@ -28,21 +22,14 @@ def after_request(response):
 # Allows the choice of two buttons
 #       The first button directs the user to the experimental tool.
 #       The second button directs the user to the baseline tool.
-# This function also defines our session parameters. Both are arrays of dictionary elements:
-#       session["exp-convos"] stores the user's experimental conversations
-#       session["base-convos"] stores the user's baseline conversations
 
 @app.route("/", methods=["GET", "POST"])
 def index():
-    # Start our session with a cleared cache and session.
-    session.clear()
     # If we've selected a button, direct us to the proper tool.
     if request.method == "POST":
         if "experimental-btn" in request.form:
-            session["exp-conversations"] = []
             return redirect("/experimental")
         # Otherwise, direct us to the baseline tool.
-        session["base-conversations"] = []
         return redirect("/baseline")
     # If we are requesting the page, load index.html.
     return render_template("index.html")
@@ -70,9 +57,8 @@ def baseline():
         output = baselineAskAI(conversation)                        # Generate a response with baseline AI
         response = {"role": "assistant", "content" : output}        # Store the response
         conversation.append(response)                               # Add the response to the conversation
-        session["base-conversations"] = conversation
         # Load our response into the explanation page.
-        return render_template("baseline-response.html", promptResponse=output)
+        return render_template("baseline-response.html", promptResponse=output, conversation=conversation)
     # If not submitting the form, return the page like normal.
     return render_template("baseline.html")
 
@@ -90,15 +76,22 @@ def baseline_response():
         print("You forgot the prompt!")
         return redirect("/baseline")
 
+    # Get conversation history from the form.
+    conversation = request.form.get("conversation")
+    if not conversation:
+        print("Error geting conversation history in baseline tool.")
+        return redirect("/baseline")
+
+    # Convert string into a list of dictionary elements
+    conversation = eval(conversation)
+
     # Prior to calling the baseline AI, update the conversation context.
-    conversation = list(session["base-conversations"])
     conversation.append({"role": "user", "content": prompt})         # Add prompt to the conversation
     output = baselineAskAI(conversation)                             # Generate a response with baseline AI
     conversation.append({"role": "assistant", "content" : output})   # Add the response to the conversation
 
-    # Update the conversation information.
-    session["base-conversations"] = conversation
-    return render_template("baseline-response.html", promptResponse=output)
+    # Return our response.
+    return render_template("baseline-response.html", promptResponse=output, conversation=conversation)
     
 
 
@@ -122,9 +115,9 @@ def experimental():
         conversation = [{"role": "user", "content": prompt}]
         output = experimentalAskAI(conversation)                            # Generate a response with experimental AI
         conversation.append({"role": "assistant", "content" : output})      # Add the response to the conversation
-        # Update the conversation information and load response.
-        session["exp-conversations"] = conversation
-        return render_template("experimental-response.html", promptResponse=output)
+        
+        # Load response.
+        return render_template("experimental-response.html", promptResponse=output, conversation=conversation)
     # If not submitting the form, return the page like normal.
     return render_template("experimental.html")
 
@@ -136,18 +129,23 @@ def experimental():
 
 @app.route("/experimental-response", methods=["POST"])
 def experimental_response():
-    # Validate our input to avoid an unnecessary API call.
+    # Validate our inputs to avoid an unnecessary API call.
     prompt = request.form.get('secondary-prompt')
     if not prompt:
         print("You forgot the prompt!")
         return redirect("/experimental")
+    
+    # Get conversation history from the form.
+    conversation = request.form.get("conversation")
+    if not conversation:
+        print("Error geting conversation history.")
+        return redirect("/experimental")
 
-    # Prior to calling the baseline AI, update the conversation context.
-    conversation = list(session["exp-conversations"])
+    # Convert string into a list of dictionary elements
+    conversation = eval(conversation)
     conversation.append({"role": "user", "content": prompt})            # Add prompt to the conversation
     output = experimentalAskAI(conversation)                            # Generate a response with experimental AI
     conversation.append({"role": "assistant", "content" : output})      # Add the response to the conversation
-   
-    # Update the conversation information.
-    session["exp-conversations"] = conversation
-    return render_template("experimental-response.html", promptResponse=output)
+    
+    # Return the outputs.
+    return render_template("experimental-response.html", promptResponse=output, conversation=conversation)

@@ -27,9 +27,10 @@
                 <!-- Markdown block & form handling new prompts -->
                 <md-block>{{ promptResponse }}</md-block><br><br>
                 <form action="/experimental-response" method="POST" id="secondary-prompt-form">
-                    <textarea class="form-control longer-input" id="secondary-prompt" name="secondary-prompt" placeholder="Write your thoughts here..."></textarea><br><br>
+                    <textarea class="form-control longer-input" id="secondary-prompt" name="secondary-prompt" placeholder="Write further questions or reflections here..."></textarea><br><br>
                     <button class="btn btn-back" href="experimental.html">Back</button>
                     <button type="submit" class="btn btn-next"><i class="fa fa-arrow-right next-icon"></i></button>
+                    <input type="hidden" name="conversation" value="{{ conversation }}"></input>
                 </form>
             </div>
             <div class="col-md-2"></div>
