@@ -1,6 +1,5 @@
 {
-    "version": 2,
-    "rewrites": [{ "source": "/(.*)", "destination": "/api/app" }],
+    "rewrites": [{ "source": "/(.*)", "destination": "/api/app.py" }],
     "functions": {
         "api/*.py": {
           "maxDuration": 60
