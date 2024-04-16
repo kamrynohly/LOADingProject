@@ -3,7 +3,7 @@
     "rewrites": [{ "source": "/(.*)", "destination": "/api/app" }],
     "functions": {
         "api/*.py": {
-          "maxDuration": 2
+          "maxDuration": 60
         }
     }
 }
