@@ -23,7 +23,7 @@ def after_request(response):
 # Allows the choice of two buttons
 #       The first button directs the user to the experimental tool.
 #       The second button directs the user to the baseline tool.
-
+@app.get("/")
 @app.route("/", methods=["GET", "POST"])
 def index():
     # If we've selected a button, direct us to the proper tool.
