@@ -6,7 +6,9 @@
             "use": "@vercel/python",
             "config": {
                 "functions": {
-                    "*.py": { "maxDuration": 60 }
+                    "app.py": { "maxDuration": 60 },
+                    "baseline_helpers.py": { "maxDuration": 60 },
+                    "experimental_helpers.py": { "maxDuration": 60 }
                 }
             }
         }
