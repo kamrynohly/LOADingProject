@@ -1,4 +1,9 @@
 {
+    "functions": {
+        "app.py": {
+            "maxDuration": 40
+        }
+    },
     "builds": [
         {
             "src": "app.py",
@@ -8,7 +13,8 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "app.py"
+            "dest": "app.py",
+            "maxDuration": 40
         }
     ]
 }
