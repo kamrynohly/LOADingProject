@@ -1,0 +1,80 @@
+/* Poppins Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+/* All */
+body {
+    font-family: "Poppins", sans-serif!important;
+}
+
+
+/* Experimental vs. Baseline Differences */
+.highlighter-experimental {
+    background: pink!important;
+    padding: 5px;
+}
+
+.highlighter-baseline {
+    background: lightgray!important;
+    padding: 5px;
+}
+
+/* Prompt Inputs & Forms */
+form {
+    display: flex;
+    width:100%;
+}
+
+#prompt {
+    margin-left:10%;
+    width: 70%;
+    min-height: 50px!important;
+}
+
+#secondary-prompt-form {
+    display: inline;
+}
+
+.longer-input {
+    height: 150px;
+    vertical-align: top;
+}
+
+
+
+/* Buttons */
+.btn-go {
+    margin-left: 10px;
+    background-color: #0FB900!important;
+}
+
+.btn-back {
+    height: 50px;
+    margin-left: 0%;
+}
+
+.btn-next {
+    float: right!important;
+    width: 50px;
+    height: 50px;
+}
+
+
+
+/* Padding */
+.top-padding {
+    height: 230px;
+}
+
+
+
+/* Icons */
+.go-icon {
+    color: white;
+    font-size: 24px!important;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.next-icon {
+    font-size: 24px!important;
+}
