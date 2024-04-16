@@ -1,6 +1,4 @@
 from flask import Flask, redirect, render_template, request
-# from baseline_helpers import baselineAskAI
-# from experimental_helpers import experimentalAskAI
 from openai import OpenAI
 from dotenv import load_dotenv, dotenv_values 
 
@@ -158,6 +156,7 @@ def experimental_response():
     
     # Return the outputs.
     return render_template("experimental-response.html", promptResponse=output, conversation=conversation)
+
 
 
 # baselineAskAI(conversation)
